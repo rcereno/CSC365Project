@@ -4,10 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.sql.*;
 
 import java.io.IOException;
+import java.sql.DriverManager;
 
 public class HelloApplication extends Application {
+    static Connection connect;
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -16,8 +19,21 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
+
     }
+
+
+//    public static void main(String[] args) {
+//
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            connect = DriverManager.getConnection(
+//                    "jdbc:mysql://ambari-node5.csc.calpoly.edu/eumorale?user=eumorale&password=027830952");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        launch();
+//    }
 }

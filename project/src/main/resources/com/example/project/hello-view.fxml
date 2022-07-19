@@ -6,8 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.project.HelloController">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.HelloController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #eae3c9;">
          <children>
@@ -52,13 +51,13 @@
                </children></AnchorPane>
             <AnchorPane layoutX="148.0" layoutY="103.0" prefHeight="283.0" prefWidth="304.0" style="-fx-background-color: #fcf4d7;">
                <children>
-                  <Button layoutX="211.0" layoutY="237.0" mnemonicParsing="false" text="Sign In" />
-                  <TextField layoutX="40.0" layoutY="197.0" opacity="0.4" prefHeight="33.0" prefWidth="225.0" promptText="Password">
+                  <Button fx:id="signinBTN" layoutX="211.0" layoutY="237.0" mnemonicParsing="false" text="Sign In" onMouseClicked="#handleMouse" />
+                  <TextField fx:id="passwordTXT" layoutX="40.0" layoutY="182.0" opacity="0.4" prefHeight="33.0" prefWidth="225.0" promptText="Password">
                      <font>
                         <Font name="Webdings" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="40.0" layoutY="142.0" opacity="0.4" promptText="Username">
+                  <TextField fx:id="usernameTXT" layoutX="40.0" layoutY="142.0" opacity="0.4" promptText="Username">
                      <font>
                         <Font name="Webdings" size="18.0" />
                      </font>
@@ -94,7 +93,8 @@
                         <Image url="@images/loginImage.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="224.0" layoutY="14.0" mnemonicParsing="false" text="Sign Up" />
+                  <Button fx:id="signupBTN" layoutX="224.0" layoutY="14.0" mnemonicParsing="false" text="Sign Up" />
+                  <Label fx:id="signinERR" alignment="CENTER" layoutX="37.0" layoutY="215.0" prefHeight="17.0" prefWidth="225.0" textFill="#f72d2d" />
                </children></AnchorPane>
          </children>
       </AnchorPane>
