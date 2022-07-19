@@ -1,8 +1,17 @@
 package com.example.project;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.*;
 
 public class SignupController {
     PreparedStatement ps;
@@ -17,4 +26,76 @@ public class SignupController {
 
         }
     }
+
+    @FXML
+    private TextField usernameTXT;
+    @FXML
+    private TextField calorieTXT;
+    @FXML
+    private TextField nameTXT;
+    @FXML
+    private Label signupERR;
+    @FXML
+    private TextField passwordTXT;
+    @FXML
+    private void HandleEvents(MouseEvent event) {
+        //check if not empty
+        String typeCheck = calorieTXT.getText();
+        if (usernameTXT.getText().isEmpty() || nameTXT.getText().isEmpty() || calorieTXT.getText().isEmpty() || passwordTXT.getText().isEmpty()) {
+
+            signupERR.setTextFill(Color.TOMATO);
+            signupERR.setText("Enter all details");
+        } else {
+            try {
+                int i = Integer.parseInt(typeCheck);
+                if(i<1200){
+                    signupERR.setText("Calorie limit must be above 1200");
+                    return;
+                }
+            } catch (NumberFormatException nfe) {
+                signupERR.setText("Calorie not an integer");
+                return;
+            }
+            if (saveSignup().equals("Successful")){
+                try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Successful.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load(), 600,400);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex) {
+                    System.err.println(ex.getMessage());
+                }
+            }
+
+        }
+    }
+    private String saveSignup() {
+        String username = usernameTXT.getText();
+        String password = passwordTXT.getText();
+        String name = nameTXT.getText();
+        String calorie = calorieTXT.getText();
+        String sql = "INSERT INTO User VALUES(?,?,?,?)";
+
+        try{
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,username );
+            ps.setString(2,password );
+            ps.setString(3,name);
+            ps.setString(4,calorie);
+            ps.executeUpdate();
+            usernameTXT.clear();
+            passwordTXT.clear();
+            nameTXT.clear();
+            return "Successful";
+        }catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return "Exception";
+        }
+    }
+
 }
+
+

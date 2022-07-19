@@ -30,7 +30,7 @@ public class HelloController {
     @FXML
     protected void handleMouse(MouseEvent event) throws IOException {
         if (event.getSource() == signinBTN){
-            if (login().equals("Success")) {
+            if (login().equals("Successful")) {
                 try {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -39,7 +39,6 @@ public class HelloController {
                     Scene scene = new Scene(fxmlLoader.load(), 600,400);
                     stage.setScene(scene);
                     stage.show();
-
                 } catch (IOException ex) {
                     System.err.println(ex.getMessage());
                 }
@@ -47,7 +46,18 @@ public class HelloController {
             }
         }
         else if (event.getSource() == signupBTN){
-            //code for sign up
+            try {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Signup.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 600,400);
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
+            }
         }
     }
     Connection con = null;
@@ -86,7 +96,7 @@ public class HelloController {
             System.err.println(e.getMessage());
            return "Exception";
         }
-        signinERR.setText("success");
-        return "Success";
+        return "Successful";
     }
+
 }

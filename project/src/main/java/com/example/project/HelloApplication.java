@@ -7,10 +7,8 @@ import javafx.stage.Stage;
 import java.sql.*;
 
 import java.io.IOException;
-import java.sql.DriverManager;
 
 public class HelloApplication extends Application {
-    static Connection connect;
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
