@@ -119,7 +119,6 @@ public class SuccessfulController {
         String [] diff = event.getTarget().toString().split(",");
         diff = diff[0].split("=");
         difficulty.setText(diff[1]);
-
 }
 
     @FXML
@@ -127,7 +126,6 @@ public class SuccessfulController {
         String [] diff = event.getTarget().toString().split(",");
         diff = diff[0].split("=");
         category.setText(diff[1]);
-
     }
 
     private String saveRecipe() {
@@ -209,8 +207,6 @@ public class SuccessfulController {
         SearchCategory = true;
         QueryMenu.setText(        "Search By Food by Category Type. (Insert Food Type)");
     }
-
-
 
         @FXML
     private void QueryResult2() throws SQLException {
@@ -423,6 +419,28 @@ public class SuccessfulController {
             String dailyCalories = rs.getString(5);
             String calorieLimit = rs.getString(6);
             ans.append(UserID).append(", ").append(Year).append(", ").append(Month).append(", ").append(day).append(", ").append(dailyCalories).append(", ").append(calorieLimit).append("\n\n");
+        }
+        queryResults.setText(String.valueOf(ans));
+    }
+
+    @FXML
+    private void RecipeOfAllFoods() throws SQLException{
+        QueryFoodByIngredientTF = false;
+        UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
+        QueryMenu.setText("What are the recipes for all the Foods?");
+        ResultSet rs;
+        Statement statement = connection.createStatement();
+        rs = statement.executeQuery(" " +
+                "select foodName, recipe " +
+                "from Food;");
+        StringBuilder ans = new StringBuilder();
+
+        while (rs.next()){
+            String FoodName = rs.getString(1);
+            String Recipe = rs.getString(2);
+            ans.append(FoodName).append("\n").append(Recipe).append("\n\n");
         }
         queryResults.setText(String.valueOf(ans));
     }

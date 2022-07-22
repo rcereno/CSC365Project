@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
+<AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
    <children>
       <ImageView fitHeight="103.0" fitWidth="110.0" layoutX="122.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -41,6 +41,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#FavoriteMealPlan" text="List of favorite foods eaten in MealPlan" />
                   <MenuItem mnemonicParsing="false" onAction="#SumCaloriesOnDate" text="Sum of Calories for a User based on Exact Year + Month + Day" />
                   <MenuItem mnemonicParsing="false" onAction="#ManyFoodsUsersLiked" text="How many foods all users have liked?" />
+                  <MenuItem mnemonicParsing="false" onAction="#RecipeOfAllFoods" text="What are the recipes for all the Foods?" />
                   <MenuItem fx:id="testMenu" mnemonicParsing="false" onAction="#testQuery" text="Test" />
               </items>
             </MenuButton>
