@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.controlsfx.control.action.Action;
+
 import java.sql.*;
 
 public class SuccessfulController {
@@ -28,6 +30,8 @@ public class SuccessfulController {
     public Button btnSbmit;
     @FXML MenuItem None;
     @FXML Label recipeSaveERR;
+
+    @FXML Label mealSaveERR;
     @FXML
     public MenuItem Hard;
     @FXML
@@ -40,6 +44,9 @@ public class SuccessfulController {
     private MenuItem UsernamePassword;
     @FXML
     private MenuItem QueryFoodByIngredient;
+
+    @FXML
+    private MenuItem QueryFoodByMealType;
     @FXML
     private TextField UserQueryInput;
     @FXML
@@ -56,17 +63,34 @@ public class SuccessfulController {
     private TextField calorieCount;
     @FXML
     private MenuButton category;
+
     @FXML
     private MenuItem mealItem;
     @FXML
     private MenuItem TopFoods;
+
+    @FXML
+    private MenuButton typeMeal;
+
+    @FXML
+    private TextField username;
+
+    @FXML
+    private TextField mealDate;
+
+    @FXML
+    private TextField nameFood;
+
     @FXML
     private MenuItem NumberUsersOnApp;
+
     private MenuButton mealType;
 
     private final String loginUsername = HelloController.getName();
 
     Boolean QueryFoodByIngredientTF = false;
+
+    Boolean QueryFoodByMealTypeTF = false;
     Boolean UsersFavoriteFoodTF = false;
     Boolean SearchCategory = false;
     PreparedStatement ps;
@@ -92,6 +116,24 @@ public class SuccessfulController {
     }
 
     @FXML
+    private void handleMealSubmit(MouseEvent event){
+        if (username.getText().isEmpty() || mealDate.getText().isEmpty() || nameFood.getText().isEmpty()) {
+            recipeSaveERR.setTextFill(Color.TOMATO);
+            recipeSaveERR.setText("Enter all details");
+        }else{
+            saveMealPlan();
+        }
+
+    }
+
+    @FXML
+    private void HandleTypeMeal(ActionEvent event) {
+        String [] diff = event.getTarget().toString().split(",");
+        diff = diff[0].split("=");
+        difficulty.setText(diff[1]);
+    }
+
+    @FXML
     private void HandleDifficulty(ActionEvent event) {
         String [] diff = event.getTarget().toString().split(",");
         diff = diff[0].split("=");
@@ -102,6 +144,33 @@ public class SuccessfulController {
         String [] diff = event.getTarget().toString().split(",");
         diff = diff[0].split("=");
         category.setText(diff[1]);
+    }
+
+    private void saveMealPlan() {
+        String typeMealText = typeMeal.getText();
+        String usernameText = username.getText();
+        String foodNameText = foodName.getText();
+        String mealDateText = mealDate.getText();
+
+        String sql = "INSERT INTO Food VALUES(?,?,?,?)";
+
+        try{
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,usernameText );
+            ps.setString(2, typeMealText);
+            ps.setString(3,mealDateText);
+            ps.setString(4,foodNameText);
+            ps.executeUpdate();
+            username.clear();
+            mealDate.clear();
+            foodName.clear();
+            typeMeal.setText("Type of Meal");
+        }catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return;
+        }
+        mealSaveERR.setTextFill(Color.GREEN);
+        mealSaveERR.setText("Food Plan Saved Successfully");
     }
     private void saveRecipe() {
         String difficultyText = difficulty.getText();
