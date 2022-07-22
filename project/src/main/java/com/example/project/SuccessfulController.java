@@ -93,23 +93,6 @@ public class SuccessfulController {
         }else{
             saveRecipe();
         }
-//        if (saveRecipe().equals("Successful")){
-//            try {
-//                Node node = (Node) event.getSource();
-//                Stage stage = (Stage) node.getScene().getWindow();
-//                stage.close();
-//                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Recipes.fxml"));
-//                Scene scene = new Scene(fxmlLoader.load(), 1200,1200);
-//                stage.setScene(scene);
-//                stage.setMaximized(true);
-//                stage.show();
-//                connection.commit();
-//            } catch (IOException ex) {
-//                System.err.println(ex.getMessage());
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
 
     }
 
@@ -380,5 +363,7 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+
+
 }
 
