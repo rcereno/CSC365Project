@@ -1,18 +1,10 @@
 package com.example.project;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.sql.*;
 
 public class SuccessfulController {
@@ -192,8 +184,6 @@ public class SuccessfulController {
         SearchCategory = true;
         QueryMenu.setText(        "Search By Food by Category Type. (Insert Food Type)");
     }
-
-
 
         @FXML
     private void QueryResult2() throws SQLException {
@@ -409,7 +399,6 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
-
 
 }
 
