@@ -3,14 +3,43 @@ package com.example.project;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class SuccessfulController {
     @FXML
     private MenuButton QueryMenu;
+    public MenuItem Easy;
+    @FXML
+    public MenuItem Breakfast;
+    @FXML
+    public MenuItem Lunch;
+    @FXML
+    public MenuItem Dinner;
+    @FXML
+    public MenuItem Snack;
+    @FXML
+    public MenuItem Dessert;
+    @FXML
+    public MenuItem Medium;
+    @FXML public MenuItem Vegan;
+    @FXML public MenuItem Vegeterian;
+    public Button btnSbmit;
+    @FXML MenuItem None;
+    @FXML Label recipeSaveERR;
+    @FXML
+    public MenuItem Hard;
+    @FXML
+    public MenuButton typeFoodMealPlan;
     @FXML
     private MenuItem testMenu;
     @FXML
@@ -32,17 +61,16 @@ public class SuccessfulController {
     @FXML
     private MenuButton difficulty;
     @FXML
-    private MenuItem difficultyItem;
-    @FXML
     private TextField calorieCount;
     @FXML
-    private MenuButton mealType;
+    private MenuButton category;
     @FXML
     private MenuItem mealItem;
     @FXML
     private MenuItem TopFoods;
     @FXML
     private MenuItem NumberUsersOnApp;
+    private MenuButton mealType;
 
     Boolean QueryFoodByIngredientTF = false;
     Boolean UsersFavoriteFoodTF = false;
@@ -57,14 +85,86 @@ public class SuccessfulController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void handleRecipeSubmit(MouseEvent event){
+        if (calorieCount.getText().isEmpty() || foodName.getText().isEmpty() || ingredients.getText().isEmpty() || recipeSteps.getText().isEmpty()) {
+            recipeSaveERR.setTextFill(Color.TOMATO);
+            recipeSaveERR.setText("Enter all details");
+        }else{
+            saveRecipe();
+        }
+//        if (saveRecipe().equals("Successful")){
+//            try {
+//                Node node = (Node) event.getSource();
+//                Stage stage = (Stage) node.getScene().getWindow();
+//                stage.close();
+//                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Recipes.fxml"));
+//                Scene scene = new Scene(fxmlLoader.load(), 1200,1200);
+//                stage.setScene(scene);
+//                stage.setMaximized(true);
+//                stage.show();
+//                connection.commit();
+//            } catch (IOException ex) {
+//                System.err.println(ex.getMessage());
+//            } catch (SQLException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
 
-    private void HandleMouse(MouseEvent event) {
-        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                String t = ((MenuItem) e.getSource()).getText();
-                System.out.println(t);
-            }
-        };
+    }
+
+    @FXML
+    private void HandleDifficulty(ActionEvent event) {
+        String [] diff = event.getTarget().toString().split(",");
+        diff = diff[0].split("=");
+        difficulty.setText(diff[1]);
+
+}
+
+    @FXML
+    private void HandleCategory(ActionEvent event) {
+        String [] diff = event.getTarget().toString().split(",");
+        diff = diff[0].split("=");
+        category.setText(diff[1]);
+
+    }
+
+    private String saveRecipe() {
+        String difficultyText = difficulty.getText();
+        String fname = foodName.getText();
+        String ing = ingredients.getText();
+        String recip = recipeSteps.getText();
+        int calorieCnt;
+        try{
+            calorieCnt = Integer.parseInt(calorieCount.getText());
+        } catch (NumberFormatException nfe) {
+            recipeSaveERR.setText("Calorie not an integer");
+            return "Exception";
+        }
+
+        String sql = "INSERT INTO Food VALUES(?,?,?,?,?,?)";
+
+        try{
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,fname );
+            ps.setString(2,ing );
+            ps.setString(3,recip);
+            ps.setString(4,difficultyText);
+            ps.setString(5, String.valueOf(calorieCnt));
+            ps.setString(6, String.valueOf(calorieCnt));
+            ps.executeUpdate();
+            foodName.clear();
+            calorieCount.clear();
+            ingredients.clear();
+            recipeSteps.clear();
+            difficulty.setText("Difficulty");
+        }catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return "Exception";
+        }
+        recipeSaveERR.setTextFill(Color.GREEN);
+        recipeSaveERR.setText("Recipe Saved Successfully");
+        return "Success";
     }
 
     @FXML

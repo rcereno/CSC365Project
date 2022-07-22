@@ -43,7 +43,6 @@ public class SignupController {
         //check if not empty
         String typeCheck = calorieTXT.getText();
         if (usernameTXT.getText().isEmpty() || nameTXT.getText().isEmpty() || calorieTXT.getText().isEmpty() || passwordTXT.getText().isEmpty()) {
-
             signupERR.setTextFill(Color.TOMATO);
             signupERR.setText("Enter all details");
         } else {

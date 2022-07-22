@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
+<AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
    <children>
       <ImageView fitHeight="103.0" fitWidth="110.0" layoutX="122.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -48,7 +48,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="46.0" layoutY="211.0" prefHeight="426.0" prefWidth="292.0" style="-fx-background-color: #fcf4d7;">
          <children>
-            <Button layoutX="75.0" layoutY="387.0" mnemonicParsing="false" text="Click here to Submit" />
+            <Button fx:id="btnSbmit" layoutX="75.0" layoutY="387.0" mnemonicParsing="false" onMouseClicked="#handleRecipeSubmit" text="Click here to Submit" />
             <AnchorPane prefHeight="51.0" prefWidth="292.0" style="-fx-background-color: #f7e7ce;">
                <children>
                   <Label layoutX="64.0" layoutY="10.0" prefHeight="31.0" prefWidth="164.0" text="Add a new Food Recipe?">
@@ -61,22 +61,21 @@
             <TextField fx:id="calorieCount" layoutX="22.0" layoutY="286.0" prefHeight="25.0" prefWidth="226.0" promptText="Calorie Count" />
             <TextArea fx:id="ingredients" layoutX="23.0" layoutY="121.0" prefHeight="44.0" prefWidth="226.0" promptText="Ingredients" />
             <TextArea fx:id="recipeSteps" layoutX="22.0" layoutY="179.0" prefHeight="51.0" prefWidth="226.0" promptText="Recipe" />
-            <MenuButton fx:id="difficulty" layoutX="22.0" layoutY="248.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Difficulty">
+            <MenuButton fx:id="difficulty" layoutX="22.0" layoutY="248.0" mnemonicParsing="false" onAction="#HandleDifficulty" prefHeight="26.0" prefWidth="226.0" text="Difficulty">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Easy" />
-                  <MenuItem mnemonicParsing="false" text="Medium" />
-                  <MenuItem mnemonicParsing="false" text="Hard" />
+                  <MenuItem fx:id="Easy" mnemonicParsing="false" onAction="#HandleDifficulty" text="Easy" />
+                  <MenuItem fx:id="Medium" mnemonicParsing="false" onAction="#HandleDifficulty" text="Medium" />
+                  <MenuItem fx:id="Hard" mnemonicParsing="false" onAction="#HandleDifficulty" text="Hard" />
                </items>
             </MenuButton>
-            <MenuButton fx:id="mealType" layoutX="25.0" layoutY="329.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Type of Meal">
+            <MenuButton fx:id="category" layoutX="25.0" layoutY="329.0" mnemonicParsing="false" onAction="#HandleCategory" prefHeight="26.0" prefWidth="226.0" text="Type of Meal">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Breakfast" />
-                  <MenuItem mnemonicParsing="false" text="Lunch" />
-                  <MenuItem mnemonicParsing="false" text="Dinner" />
-                  <MenuItem mnemonicParsing="false" text="Dessert" />
-                  <MenuItem mnemonicParsing="false" text="Snack" />
+                  <MenuItem fx:id="Vegan" mnemonicParsing="false" onAction="#HandleCategory" text="Vegan" />
+                  <MenuItem fx:id="Vegeterian" mnemonicParsing="false" onAction="#HandleCategory" text="Vegetarian" />
+                  <MenuItem fx:id="None" mnemonicParsing="false" onAction="#HandleCategory" text="N/A" />
                </items>
             </MenuButton>
+            <Label fx:id="recipeSaveERR" layoutX="25.0" layoutY="355.0" prefHeight="17.0" prefWidth="226.0" textFill="RED" />
          </children></AnchorPane>
       <AnchorPane layoutX="383.0" layoutY="211.0" prefHeight="426.0" prefWidth="281.0" style="-fx-background-color: #fcf4d7;">
          <children>
@@ -92,7 +91,7 @@
             <TextField layoutX="33.0" layoutY="201.0" prefHeight="25.0" prefWidth="226.0" promptText="Name of Food" />
             <TextField layoutX="34.0" layoutY="156.0" prefHeight="25.0" prefWidth="226.0" promptText="Date of Meal Eaten" />
             <TextField layoutX="33.0" layoutY="71.0" prefHeight="25.0" prefWidth="226.0" promptText="Username (for which user)" />
-            <MenuButton fx:id="difficulty1" layoutX="33.0" layoutY="115.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Type of Meal">
+            <MenuButton fx:id="mealType" layoutX="33.0" layoutY="115.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Type of Meal">
                <items>
                   <MenuItem mnemonicParsing="false" text="Easy" />
                   <MenuItem mnemonicParsing="false" text="Medium" />
