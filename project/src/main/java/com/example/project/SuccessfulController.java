@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -10,7 +12,9 @@ public class SuccessfulController {
     @FXML
     private MenuItem Query1;
     @FXML
-    private TextField foodNAme;
+    private TextField foodName;
+    @FXML
+    private TextArea queryResults;
     @FXML
     private TextArea ingredients;
     @FXML
@@ -18,9 +22,13 @@ public class SuccessfulController {
     @FXML
     private MenuButton difficulty;
     @FXML
+    private MenuItem difficultyItem;
+    @FXML
     private TextField calorieCount;
     @FXML
     private MenuButton mealType;
+    @FXML
+    private MenuItem mealItem;
 
     PreparedStatement ps;
     Connection connection;
@@ -33,7 +41,14 @@ public class SuccessfulController {
             e.printStackTrace();
         }
     }
-    private void HandleQueres(MouseEvent event){
+    private void HandleMouse(MouseEvent event) {
+
+        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                String t = ((MenuItem) e.getSource()).getText();
+                System.out.println(t);
+            }
+        };
     }
 
     public void QueryResult1() throws SQLException {
