@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.controlsfx.control.action.Action;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class SuccessfulController {
@@ -292,6 +293,7 @@ public class SuccessfulController {
 
         @FXML
     private void QueryResult2() throws SQLException {
+        try{
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
 
@@ -308,10 +310,15 @@ public class SuccessfulController {
             ans.append(Username).append(", ").append(Password).append("\n\n");
         }
         queryResults.setText(String.valueOf(ans));
+        }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
     }
 
     @FXML
     private void QueryByInput() throws SQLException{
+        try{
         if (QueryFoodByIngredientTF){
             if (!UserQueryInput.getText().isEmpty()){
                 ResultSet rs;
@@ -367,10 +374,16 @@ public class SuccessfulController {
                 queryResults.setText("Enter a Food Category Type");
             }
         }
+
+    }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
     }
 
     @FXML
     private void UsersOnApp() throws SQLException {
+        try{
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
         SearchCategory = false;
@@ -387,9 +400,15 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    }
 
     @FXML
     private void MostLikedFoods() throws SQLException {
+
+        try{
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
         SearchCategory = false;
@@ -410,9 +429,14 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    }
 
     @FXML
     private void GetUsersNames() throws SQLException{
+        try {
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
         SearchCategory = false;
@@ -430,8 +454,13 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    }
     @FXML
     private void FavoriteMealPlan() throws SQLException{
+        try {
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
         SearchCategory = false;
@@ -454,9 +483,14 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    }
 
     @FXML
     private void ManyFoodsUsersLiked() throws SQLException{
+        try {
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
         SearchCategory = false;
@@ -477,9 +511,14 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    }
 
     @FXML
     private void SumCaloriesOnDate() throws SQLException{
+        try {
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
         SearchCategory = false;
@@ -504,8 +543,13 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    }
     @FXML
     private void RecipeOfAllFoods() throws SQLException{
+        try {
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
         SearchCategory = false;
@@ -525,6 +569,35 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    }
 
+    @FXML
+    private void MyFavoriteFood() throws SQLException{
+        try {
+            QueryFoodByIngredientTF = false;
+            UsersFavoriteFoodTF = false;
+            SearchCategory = false;
+
+            QueryMenu.setText("What are the recipes for all the Foods?");
+            ResultSet rs;
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery("select likedFood " +
+                    "from FavoriteFoods " +
+                    "where userID = '" + user + "'");
+            StringBuilder ans = new StringBuilder();
+
+            while (rs.next()) {
+                String likedFood = rs.getString(1);
+                ans.append(likedFood).append("\n\n");
+            }
+            queryResults.setText(String.valueOf(ans));
+        }
+        catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    }
 }
 

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
+<AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
    <children>
       <ImageView fitHeight="103.0" fitWidth="110.0" layoutX="122.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -32,6 +32,7 @@
             <MenuButton fx:id="QueryMenu" layoutX="311.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="345.0" text="Select a query">
               <items>
                   <MenuItem mnemonicParsing="false" onAction="#GetUsersNames" text="What are the names of all the users?" />
+                  <MenuItem mnemonicParsing="false" onAction="#MyFavoriteFood" text="What are my favorite foods?" />
                 <MenuItem fx:id="UsernamePassword" mnemonicParsing="false" onAction="#QueryResult2" text="What are the usernames and passwords for all users?" />
                   <MenuItem fx:id="QueryFoodByIngredient" mnemonicParsing="false" onAction="#setQuery2True" text="Search by Ingredient Name. (Insert Ingredient Name)" />
                   <MenuItem mnemonicParsing="false" onAction="#setQueryFavoriteFood" text="Search user’s favorite foods. (Insert their name)" />
