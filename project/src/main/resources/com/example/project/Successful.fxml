@@ -38,7 +38,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="46.0" layoutY="211.0" prefHeight="426.0" prefWidth="292.0" style="-fx-background-color: #fcf4d7;">
          <children>
-            <Button layoutX="102.0" layoutY="379.0" mnemonicParsing="false" text="Click here" />
+            <Button layoutX="75.0" layoutY="387.0" mnemonicParsing="false" text="Click here to Submit" />
             <AnchorPane prefHeight="51.0" prefWidth="292.0" style="-fx-background-color: #f7e7ce;">
                <children>
                   <Label layoutX="64.0" layoutY="10.0" prefHeight="31.0" prefWidth="164.0" text="Add a new Food Recipe?">
@@ -56,7 +56,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="383.0" layoutY="211.0" prefHeight="426.0" prefWidth="281.0" style="-fx-background-color: #fcf4d7;">
          <children>
-            <Button layoutX="112.0" layoutY="366.0" mnemonicParsing="false" text="Click here" />
+            <Button layoutX="71.0" layoutY="387.0" mnemonicParsing="false" text="Click here to Submit" />
             <BorderPane prefHeight="51.0" prefWidth="281.0" style="-fx-background-color: #f7e7ce;">
                <center>
                   <Label text="Create a new food plan?" BorderPane.alignment="CENTER">
@@ -72,7 +72,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="711.0" layoutY="211.0" prefHeight="426.0" prefWidth="268.0" style="-fx-background-color: #fcf4d7;">
          <children>
-            <Button layoutX="101.0" layoutY="369.0" mnemonicParsing="false" text="Click here" />
+            <Button layoutX="74.0" layoutY="387.0" mnemonicParsing="false" text="Click here to Submit" />
             <AnchorPane prefHeight="51.0" prefWidth="268.0" style="-fx-background-color: #f7e7ce;">
                <children>
                   <Label layoutX="44.0" layoutY="13.0" prefHeight="25.0" prefWidth="196.0" text="What are your favorite foods?">
