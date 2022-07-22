@@ -21,6 +21,7 @@ public class SignupController {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
                     "jdbc:mysql://ambari-node5.csc.calpoly.edu/eumorale?user=eumorale&password=027830952");
+            connection.setAutoCommit(false);
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -65,8 +66,11 @@ public class SignupController {
                     Scene scene = new Scene(fxmlLoader.load(), 600,400);
                     stage.setScene(scene);
                     stage.show();
+                    connection.commit();
                 } catch (IOException ex) {
                     System.err.println(ex.getMessage());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
                 }
             }
 

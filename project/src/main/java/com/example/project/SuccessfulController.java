@@ -1,18 +1,26 @@
 package com.example.project;
 
-import com.mysql.cj.QueryResult;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.*;
 
 public class SuccessfulController {
     @FXML
-    private Menu Query1;
+    private MenuItem Query1;
     @FXML
-    private Menu Query2;
+    private TextField foodNAme;
+    @FXML
+    private TextArea ingredients;
+    @FXML
+    private TextArea recipeSteps;
+    @FXML
+    private MenuButton difficulty;
+    @FXML
+    private TextField calorieCount;
+    @FXML
+    private MenuButton mealType;
 
     PreparedStatement ps;
     Connection connection;

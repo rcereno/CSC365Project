@@ -69,6 +69,7 @@ public class HelloController {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(
                     "jdbc:mysql://ambari-node5.csc.calpoly.edu/eumorale?user=eumorale&password=027830952");
+            con.setAutoCommit(false);
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -82,8 +83,7 @@ public class HelloController {
         if(username.isEmpty() || password.isEmpty()) {
             signinERR.setText("Empty Username/Password");
             return "Error";
-        }
-        try{
+        }try{
             ps = con.prepareStatement(sql);
             ps.setString(1,username );
             ps.setString(2,password );
