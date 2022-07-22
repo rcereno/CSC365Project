@@ -35,6 +35,7 @@
                 <MenuItem fx:id="UsernamePassword" mnemonicParsing="false" onAction="#QueryResult2" text="What are the usernames and passwords for all users?" />
                   <MenuItem fx:id="QueryFoodByIngredient" mnemonicParsing="false" onAction="#setQuery2True" text="Search by Ingredient Name. (Insert Ingredient Name)" />
                   <MenuItem mnemonicParsing="false" onAction="#setQueryFavoriteFood" text="Search user’s favorite foods. (Insert their name)" />
+                  <MenuItem mnemonicParsing="false" onAction="#SearchCategoryType" text="Search By Food by Category Type. (Insert Food Type)" />
                   <MenuItem fx:id="NumberUsersOnApp" mnemonicParsing="false" onAction="#UsersOnApp" text="How many users are using this App?" />
                   <MenuItem fx:id="TopFoods" mnemonicParsing="false" onAction="#MostLikedFoods" text="What are the top 10 most liked Food items?" />
                   <MenuItem mnemonicParsing="false" onAction="#FavoriteMealPlan" text="List of favorite foods eaten in MealPlan" />
