@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
+
    <children>
       <ImageView fitHeight="103.0" fitWidth="110.0" layoutX="122.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -80,9 +88,9 @@
             </MenuButton>
             <Label fx:id="recipeSaveERR" layoutX="25.0" layoutY="355.0" prefHeight="17.0" prefWidth="226.0" textFill="RED" />
          </children></AnchorPane>
-      <AnchorPane layoutX="383.0" layoutY="211.0" prefHeight="426.0" prefWidth="281.0" style="-fx-background-color: #fcf4d7;">
+      <AnchorPane layoutX="384.0" layoutY="211.0" prefHeight="426.0" prefWidth="281.0" style="-fx-background-color: #fcf4d7;">
          <children>
-            <Button layoutX="71.0" layoutY="387.0" mnemonicParsing="false" text="Click here to Submit" />
+            <Button fx:id="mealPlanBTN" layoutX="77.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#handleSubmit" text="Click here to Submit" />
             <BorderPane prefHeight="51.0" prefWidth="281.0" style="-fx-background-color: #f7e7ce;">
                <center>
                   <Label text="Create a new food plan?" BorderPane.alignment="CENTER">
@@ -91,16 +99,18 @@
                      </font>
                   </Label>
                </center></BorderPane>
-            <TextField layoutX="33.0" layoutY="201.0" prefHeight="25.0" prefWidth="226.0" promptText="Name of Food" />
-            <TextField layoutX="34.0" layoutY="156.0" prefHeight="25.0" prefWidth="226.0" promptText="Date of Meal Eaten" />
-            <TextField layoutX="33.0" layoutY="71.0" prefHeight="25.0" prefWidth="226.0" promptText="Username (for which user)" />
-            <MenuButton fx:id="mealType" layoutX="33.0" layoutY="115.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Type of Meal">
+            <TextField fx:id="foodPlanTXT" layoutX="33.0" layoutY="161.0" prefHeight="25.0" prefWidth="226.0" promptText="Name of Food" />
+            <TextField fx:id="mealDate" layoutX="33.0" layoutY="120.0" prefHeight="25.0" prefWidth="226.0" promptText="Date of Meal Eaten" />
+            <MenuButton fx:id="mealType" layoutX="33.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Type of Meal">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Easy" />
-                  <MenuItem mnemonicParsing="false" text="Medium" />
-                  <MenuItem mnemonicParsing="false" text="Hard" />
+                  <MenuItem fx:id="Breakfast" mnemonicParsing="false" onAction="#HandleTypeMeal" text="Breakfast" />
+                  <MenuItem fx:id="Lunch" mnemonicParsing="false" onAction="#HandleTypeMeal" text="Lunch" />
+                  <MenuItem fx:id="Dinner" mnemonicParsing="false" onAction="#HandleTypeMeal" text="Dinner" />
+                  <MenuItem fx:id="Snack" mnemonicParsing="false" onAction="#HandleTypeMeal" text="Snack" />
+                  <MenuItem fx:id="Dessert" mnemonicParsing="false" onAction="#HandleTypeMeal" text="Dessert" />
                </items>
             </MenuButton>
+            <Label fx:id="foodPlanERR" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="367.0" prefHeight="17.0" prefWidth="226.0" textFill="RED" />
          </children></AnchorPane>
       <AnchorPane layoutX="711.0" layoutY="211.0" prefHeight="426.0" prefWidth="268.0" style="-fx-background-color: #fcf4d7;">
          <children>

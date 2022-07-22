@@ -58,10 +58,7 @@ userID varchar(30),
 likedFood varchar(30),
 foreign key(userID) references User(userID),
 foreign key(likedFood) references Food(foodName),
-Primary key (userID, likedFood));
-
-select * from FavoriteFoods;
-select * from User;]]></console>
+Primary key (userID, likedFood));]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

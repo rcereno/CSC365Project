@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.sql.*;
@@ -15,7 +14,13 @@ public class SuccessfulController {
     @FXML
     public Button likedFoodBTN;
     @FXML
+    public Button mealPlanBTN;
+    @FXML
     public TextField nameFoodTXT;
+    @FXML
+    public TextField foodPlanTXT;
+    @FXML
+    public TextField mealDate;
     @FXML
     private MenuButton QueryMenu;
     public MenuItem Easy;
@@ -37,28 +42,13 @@ public class SuccessfulController {
     @FXML MenuItem None;
     @FXML Label recipeSaveERR;
     @FXML Label likedSaveERR;
-
-    @FXML Label mealSaveERR;
-
+    @FXML Label foodPlanERR;
     @FXML
     public MenuItem Hard;
     @FXML
-    public MenuButton typeFoodMealPlan;
-    @FXML
-    private MenuItem testMenu;
-    @FXML
     private TextArea queryResults;
     @FXML
-    private MenuItem UsernamePassword;
-    @FXML
-    private MenuItem QueryFoodByIngredient;
-
-    @FXML
-    private MenuItem QueryFoodByMealType;
-    @FXML
     private TextField UserQueryInput;
-    @FXML
-    private MenuItem Query1;
     @FXML
     private TextField foodName;
     @FXML
@@ -71,33 +61,11 @@ public class SuccessfulController {
     private TextField calorieCount;
     @FXML
     private MenuButton category;
-
-    @FXML
-    private MenuItem mealItem;
-    @FXML
-    private MenuItem TopFoods;
-
-    @FXML
-    private MenuButton typeMeal;
-
-    @FXML
-    private TextField username;
-
-    @FXML
-    private TextField mealDate;
-
-    @FXML
-    private TextField nameFood;
-
-    @FXML
-    private MenuItem NumberUsersOnApp;
-
     @FXML
     private MenuButton mealType;
 
     Boolean QueryFoodByIngredientTF = false;
 
-    Boolean QueryFoodByMealTypeTF = false;
     Boolean UsersFavoriteFoodTF = false;
     Boolean SearchCategory = false;
     PreparedStatement ps;
@@ -127,6 +95,13 @@ public class SuccessfulController {
             }else{
                 saveLiked();
             }
+        }else if(event.getSource()==mealPlanBTN){
+            if ( mealDate.getText().isEmpty() || foodPlanTXT.getText().isEmpty()) {
+                foodPlanERR.setTextFill(Color.TOMATO);
+                foodPlanERR.setText("Enter all details");
+            }else{
+                saveMealPlan();
+            }
         }
     }
 
@@ -152,23 +127,11 @@ public class SuccessfulController {
 
 
     }
-
-    @FXML
-    private void handleMealSubmit(MouseEvent event){
-        if (username.getText().isEmpty() || mealDate.getText().isEmpty() || nameFood.getText().isEmpty()) {
-            recipeSaveERR.setTextFill(Color.TOMATO);
-            recipeSaveERR.setText("Enter all details");
-        }else{
-            saveMealPlan();
-        }
-
-    }
-
-    @FXML
+    @FXML //for the drop down menu breakfast, lunch, etc
     private void HandleTypeMeal(ActionEvent event) {
         String [] diff = event.getTarget().toString().split(",");
         diff = diff[0].split("=");
-        difficulty.setText(diff[1]);
+        mealType.setText(diff[1]);
     }
 
     @FXML
@@ -185,30 +148,31 @@ public class SuccessfulController {
     }
 
     private void saveMealPlan() {
-        String typeMealText = typeMeal.getText();
-        String usernameText = username.getText();
-        String foodNameText = foodName.getText();
+        String typeMealText = mealType.getText();
+        String usernameText = user;
+        String foodNameText = foodPlanTXT.getText();
         String mealDateText = mealDate.getText();
 
-        String sql = "INSERT INTO Food VALUES(?,?,?,?)";
+        String sql = "INSERT INTO MealPlanner (foodName, mealType,userID,mealDate) VALUES(?,?,?,?)";
 
         try{
             ps = connection.prepareStatement(sql);
-            ps.setString(1,usernameText );
+            ps.setString(1,foodNameText );
             ps.setString(2, typeMealText);
-            ps.setString(3,mealDateText);
-            ps.setString(4,foodNameText);
+            ps.setString(3,usernameText);
+            ps.setString(4,mealDateText);
             ps.executeUpdate();
-            username.clear();
             mealDate.clear();
-            foodName.clear();
-            typeMeal.setText("Type of Meal");
+            foodPlanTXT.clear();
+            mealType.setText("Type of Meal");
         }catch (SQLException e) {
             System.err.println(e.getMessage());
+            foodPlanERR.setTextFill(Color.RED);
+            foodPlanERR.setText("Food Plan Save Failed");
             return;
         }
-        mealSaveERR.setTextFill(Color.GREEN);
-        mealSaveERR.setText("Food Plan Saved Successfully");
+        foodPlanERR.setTextFill(Color.GREEN);
+        foodPlanERR.setText("Food Plan Saved Successfully");
     }
     private void saveRecipe() {
 
@@ -599,5 +563,6 @@ public class SuccessfulController {
         System.err.println(ex.getMessage());
     }
     }
+
 }
 
