@@ -212,6 +212,28 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+    @FXML
+    private void FavoriteMealPlan() throws SQLException{
+        QueryFoodByIngredientTF = false;
+        UsersFavoriteFoodTF = false;
+        QueryMenu.setText("What are the names of all the users?");
+        ResultSet rs;
+        Statement statement = connection.createStatement();
+        rs = statement.executeQuery("select F.foodName, M.mealDate, F.ingredients, U.name " +
+                "from MealPlanner M, Food F, FavoriteFoods FF, User U " +
+                "where FF.userID = U.userID and FF.likedFood = M.foodName");
+        StringBuilder ans = new StringBuilder();
+
+        while (rs.next()){
+            String foodName = rs.getString(1);
+            String mealDate = rs.getString(2);
+            String ingredients = rs.getString(3);
+            String name = rs.getString(4);
+
+            ans.append(foodName).append(", ").append(mealDate).append(", ").append(ingredients).append(", ").append(name).append(", ").append("\n\n");
+        }
+        queryResults.setText(String.valueOf(ans));
+    }
 
 }
 

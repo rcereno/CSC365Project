@@ -63,7 +63,7 @@ public class SignupController {
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
                     FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Successful.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load(), 600,400);
+                    Scene scene = new Scene(fxmlLoader.load(), 1330,663);
                     stage.setScene(scene);
                     stage.show();
                     connection.commit();
