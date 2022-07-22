@@ -32,7 +32,7 @@
             <MenuButton layoutX="604.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="313.0" text="Select a query">
               <items>
                 <MenuItem mnemonicParsing="false" text="How many users are using this App?" />
-                <MenuItem mnemonicParsing="false" text="What are the usernames and passwords for all users?" />
+                <MenuItem fx:id="UsernamePassword" mnemonicParsing="false" onAction="#QueryResult2" text="What are the usernames and passwords for all users?" />
                   <MenuItem fx:id="testMenu" mnemonicParsing="false" onAction="#testQuery" text="Test" />
               </items>
             </MenuButton>

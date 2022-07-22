@@ -13,7 +13,8 @@ public class SuccessfulController {
     private MenuItem testMenu;
     @FXML
     private TextArea queryResults;
-
+    @FXML
+    private MenuItem UsernamePassword;
 
 
     @FXML
@@ -58,20 +59,32 @@ public class SuccessfulController {
 
     @FXML
     private void testQuery(ActionEvent event){
-        queryResults.setText("Hello mom");
+        StringBuilder hi= new StringBuilder();
+        int i = 0;
+        while (i < 10){
+            i++;
+            String s = String.valueOf(i);
+            hi.append(s).append("\n");
+        }
+        queryResults.setText(String.valueOf(hi));
+
     }
 
-    private void QueryResult1() throws SQLException {
+    @FXML
+    private void QueryResult2() throws SQLException {
         ResultSet rs;
         Statement statement = connection.createStatement();
-        rs = statement.executeQuery("SELECT * FROM STUDENTS");
+        rs = statement.executeQuery("SELECT UserID, password FROM User");
+        StringBuilder ans = new StringBuilder();
+
         while (rs.next()){
             String Username = rs.getString(1);
             String Password = rs.getString(2);
 
-            System.out.println("Username = " +
-                    Username + "Password = " + Password);
+            ans.append(Username).append(",").append(Password).append("\n");
         }
+        queryResults.setText(String.valueOf(ans));
+
     }
 }
 
