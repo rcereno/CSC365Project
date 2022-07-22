@@ -1,14 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.project.SuccessfulController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
+   <children>
+      <ImageView fitHeight="103.0" fitWidth="110.0" layoutX="122.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/restaurant.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="114.0" fitWidth="110.0" layoutX="469.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/plan.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="110.0" fitWidth="110.0" layoutX="790.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/favorite-food.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="4.0" prefHeight="63.0" prefWidth="1011.0" style="-fx-background-color: #f7e7ce;">
+         <children>
+            <Label layoutX="320.0" layoutY="16.0" prefHeight="31.0" prefWidth="226.0" text="What would you like to do?">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <MenuButton layoutX="604.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="313.0" text="Select a query">
+              <items>
+                <MenuItem mnemonicParsing="false" text="How many users are using this App?" />
+                <MenuItem mnemonicParsing="false" text="What are the usernames and passwords for all users?" />
+                  <MenuItem mnemonicParsing="false" text="Test" />
+              </items>
+            </MenuButton>
+         </children></AnchorPane>
+      <AnchorPane layoutX="46.0" layoutY="211.0" prefHeight="426.0" prefWidth="292.0" style="-fx-background-color: #fcf4d7;">
+         <children>
+            <Button layoutX="75.0" layoutY="387.0" mnemonicParsing="false" text="Click here to Submit" />
+            <AnchorPane prefHeight="51.0" prefWidth="292.0" style="-fx-background-color: #f7e7ce;">
+               <children>
+                  <Label layoutX="64.0" layoutY="10.0" prefHeight="31.0" prefWidth="164.0" text="Add a new Food Recipe?">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <TextField fx:id="foodName" layoutX="23.0" layoutY="77.0" prefHeight="25.0" prefWidth="226.0" promptText="Name of Food" />
+            <TextField fx:id="calorieCount" layoutX="22.0" layoutY="286.0" prefHeight="25.0" prefWidth="226.0" promptText="Calorie Count" />
+            <TextArea fx:id="ingredients" layoutX="23.0" layoutY="121.0" prefHeight="44.0" prefWidth="226.0" promptText="Ingredients" />
+            <TextArea fx:id="recipeSteps" layoutX="22.0" layoutY="179.0" prefHeight="51.0" prefWidth="226.0" promptText="Recipe" />
+            <MenuButton fx:id="difficulty" layoutX="22.0" layoutY="248.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Difficulty">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Easy" />
+                  <MenuItem mnemonicParsing="false" text="Medium" />
+                  <MenuItem mnemonicParsing="false" text="Hard" />
+               </items>
+            </MenuButton>
+            <MenuButton fx:id="mealType" layoutX="25.0" layoutY="329.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Type of Meal">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Breakfast" />
+                  <MenuItem mnemonicParsing="false" text="Lunch" />
+                  <MenuItem mnemonicParsing="false" text="Dinner" />
+                  <MenuItem mnemonicParsing="false" text="Dessert" />
+                  <MenuItem mnemonicParsing="false" text="Snack" />
+               </items>
+            </MenuButton>
+         </children></AnchorPane>
+      <AnchorPane layoutX="383.0" layoutY="211.0" prefHeight="426.0" prefWidth="281.0" style="-fx-background-color: #fcf4d7;">
+         <children>
+            <Button layoutX="71.0" layoutY="387.0" mnemonicParsing="false" text="Click here to Submit" />
+            <BorderPane prefHeight="51.0" prefWidth="281.0" style="-fx-background-color: #f7e7ce;">
+               <center>
+                  <Label text="Create a new food plan?" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Label>
+               </center></BorderPane>
+            <TextField layoutX="33.0" layoutY="201.0" prefHeight="25.0" prefWidth="226.0" promptText="Name of Food" />
+            <TextField layoutX="34.0" layoutY="156.0" prefHeight="25.0" prefWidth="226.0" promptText="Date of Meal Eaten" />
+            <TextField layoutX="33.0" layoutY="71.0" prefHeight="25.0" prefWidth="226.0" promptText="Username (for which user)" />
+            <MenuButton fx:id="difficulty1" layoutX="33.0" layoutY="115.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="226.0" text="Type of Meal">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Easy" />
+                  <MenuItem mnemonicParsing="false" text="Medium" />
+                  <MenuItem mnemonicParsing="false" text="Hard" />
+               </items>
+            </MenuButton>
+         </children></AnchorPane>
+      <AnchorPane layoutX="711.0" layoutY="211.0" prefHeight="426.0" prefWidth="268.0" style="-fx-background-color: #fcf4d7;">
+         <children>
+            <Button layoutX="74.0" layoutY="387.0" mnemonicParsing="false" text="Click here to Submit" />
+            <AnchorPane prefHeight="51.0" prefWidth="268.0" style="-fx-background-color: #f7e7ce;">
+               <children>
+                  <Label layoutX="44.0" layoutY="13.0" prefHeight="25.0" prefWidth="196.0" text="What are your favorite foods?">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <TextField layoutX="21.0" layoutY="113.0" prefHeight="25.0" prefWidth="226.0" promptText="Name of Food" />
+            <TextField layoutX="22.0" layoutY="70.0" prefHeight="25.0" prefWidth="226.0" promptText=" Username (for which user)" />
+         </children></AnchorPane>
+      <AnchorPane layoutX="1012.0" prefHeight="661.0" prefWidth="320.0" style="-fx-background-color: #f7e7ce;">
+         <children>
+            <AnchorPane layoutX="25.0" layoutY="62.0" prefHeight="576.0" prefWidth="281.0" style="-fx-background-color: #fcf4d7;">
+               <children>
+                  <TextArea fx:id="queryResults" layoutX="11.0" layoutY="11.0" prefHeight="551.0" prefWidth="259.0" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="123.0" layoutY="24.0" text="Query Results">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </children>
 </AnchorPane>
