@@ -38,6 +38,8 @@
                   <MenuItem fx:id="NumberUsersOnApp" mnemonicParsing="false" onAction="#UsersOnApp" text="How many users are using this App?" />
                   <MenuItem fx:id="TopFoods" mnemonicParsing="false" onAction="#MostLikedFoods" text="What are the top 10 most liked Food items?" />
                   <MenuItem mnemonicParsing="false" onAction="#FavoriteMealPlan" text="List of favorite foods eaten in MealPlan" />
+                  <MenuItem mnemonicParsing="false" onAction="#SumCaloriesOnDate" text="Sum of Calories for a User based on Exact Year + Month + Day" />
+                  <MenuItem mnemonicParsing="false" onAction="#ManyFoodsUsersLiked" text="How many foods all users have liked?" />
                   <MenuItem fx:id="testMenu" mnemonicParsing="false" onAction="#testQuery" text="Test" />
               </items>
             </MenuButton>

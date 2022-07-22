@@ -77,7 +77,7 @@ public class SuccessfulController {
         while (i < 10){
             i++;
             String s = String.valueOf(i);
-            hi.append(s).append("\n");
+            hi.append(s).append("\n\n");
         }
         queryResults.setText(String.valueOf(hi));
     }
@@ -111,7 +111,7 @@ public class SuccessfulController {
         while (rs.next()){
             String Username = rs.getString(1);
             String Password = rs.getString(2);
-            ans.append(Username).append(", ").append(Password).append("\n");
+            ans.append(Username).append(", ").append(Password).append("\n\n");
         }
         queryResults.setText(String.valueOf(ans));
     }
@@ -129,7 +129,7 @@ public class SuccessfulController {
                 StringBuilder ans = new StringBuilder();
                 while (rs.next()){
                     String FoodName = rs.getString(1);
-                    ans.append(FoodName).append("\n");
+                    ans.append(FoodName).append("\n\n");
                 }
                 queryResults.setText(String.valueOf(ans));
             }
@@ -147,7 +147,7 @@ public class SuccessfulController {
                 StringBuilder ans = new StringBuilder();
                 while (rs.next()){
                     String FoodName = rs.getString(1);
-                    ans.append(FoodName).append("\n");
+                    ans.append(FoodName).append("\n\n");
                 }
                 queryResults.setText(String.valueOf(ans));
             }
@@ -169,7 +169,7 @@ public class SuccessfulController {
 
         while (rs.next()){
             String NumberOfUsers = rs.getString(1);
-            ans.append(NumberOfUsers).append("\n");
+            ans.append(NumberOfUsers).append("\n\n");
         }
         queryResults.setText(String.valueOf(ans));
     }
@@ -190,7 +190,7 @@ public class SuccessfulController {
 
         while (rs.next()){
             String Food = rs.getString(1);
-            ans.append(Food).append("\n");
+            ans.append(Food).append("\n\n");
         }
         queryResults.setText(String.valueOf(ans));
     }
@@ -208,7 +208,7 @@ public class SuccessfulController {
 
         while (rs.next()){
             String Name = rs.getString(1);
-            ans.append(Name).append("\n");
+            ans.append(Name).append("\n\n");
         }
         queryResults.setText(String.valueOf(ans));
     }
@@ -216,7 +216,7 @@ public class SuccessfulController {
     private void FavoriteMealPlan() throws SQLException{
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
-        QueryMenu.setText("What are the names of all the users?");
+        QueryMenu.setText("List of favorite foods eaten in MealPlan");
         ResultSet rs;
         Statement statement = connection.createStatement();
         rs = statement.executeQuery("select F.foodName, M.mealDate, F.ingredients, U.name " +
@@ -235,5 +235,50 @@ public class SuccessfulController {
         queryResults.setText(String.valueOf(ans));
     }
 
+    @FXML
+    private void ManyFoodsUsersLiked() throws SQLException{
+        QueryFoodByIngredientTF = false;
+        UsersFavoriteFoodTF = false;
+        QueryMenu.setText("How many foods all users have liked?");
+        ResultSet rs;
+        Statement statement = connection.createStatement();
+        rs = statement.executeQuery("select U.userID, coalesce(count(likedFood), 0) as totLikes " +
+                "from User U left join FavoriteFoods FF on (U.userID = FF.userID) " +
+                "group by U.userID");
+        StringBuilder ans = new StringBuilder();
+
+        while (rs.next()){
+            String UserID = rs.getString(1);
+            String TotalLikes = rs.getString(2);
+
+            ans.append(UserID).append(", ").append(TotalLikes).append("\n\n");
+        }
+        queryResults.setText(String.valueOf(ans));
+    }
+
+    @FXML
+    private void SumCaloriesOnDate() throws SQLException{
+        QueryFoodByIngredientTF = false;
+        UsersFavoriteFoodTF = false;
+        QueryMenu.setText("Sum of Calories for a User based on Exact Year + Month + Day");
+        ResultSet rs;
+        Statement statement = connection.createStatement();
+        rs = statement.executeQuery("select M.userID, year(M.mealDate) as year, month(M.mealDate) as month, day(M.mealDate) as day, sum(F.calorieCount) as dailyCalories, U.calorieLimit " +
+                "from Food F, MealPlanner M, User U " +
+                "where F.foodName = M.foodName and U.userID = M.userID " +
+                "group by M.userID, month(M.mealDate), year(M.mealDate), day(M.mealDate), U.calorieLimit;");
+        StringBuilder ans = new StringBuilder();
+
+        while (rs.next()){
+            String UserID = rs.getString(1);
+            String Year = rs.getString(2);
+            String Month = rs.getString(3);
+            String day = rs.getString(4);
+            String dailyCalories = rs.getString(5);
+            String calorieLimit = rs.getString(6);
+            ans.append(UserID).append(", ").append(Year).append(", ").append(Month).append(", ").append(day).append(", ").append(dailyCalories).append(", ").append(calorieLimit).append("\n\n");
+        }
+        queryResults.setText(String.valueOf(ans));
+    }
 }
 
