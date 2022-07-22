@@ -36,7 +36,7 @@ public class HelloController {
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
                     FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Successful.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load(), 600,400);
+                    Scene scene = new Scene(fxmlLoader.load(),1015,663);
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException ex) {
