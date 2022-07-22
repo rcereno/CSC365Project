@@ -42,7 +42,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#SumCaloriesOnDate" text="Sum of Calories for a User based on Exact Year + Month + Day" />
                   <MenuItem mnemonicParsing="false" onAction="#ManyFoodsUsersLiked" text="How many foods all users have liked?" />
                   <MenuItem mnemonicParsing="false" onAction="#RecipeOfAllFoods" text="What are the recipes for all the Foods?" />
-                  <MenuItem fx:id="testMenu" mnemonicParsing="false" onAction="#testQuery" text="Test" />
+                  <MenuItem fx:id="testMenu" disable="true" mnemonicParsing="false" onAction="#testQuery" text="Test" visible="false" />
               </items>
             </MenuButton>
             <TextField fx:id="UserQueryInput" layoutX="675.0" layoutY="19.0" prefHeight="25.0" prefWidth="252.0" promptText="user input" />
