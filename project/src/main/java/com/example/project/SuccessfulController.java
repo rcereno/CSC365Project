@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-
 import java.sql.*;
 
 public class SuccessfulController {
@@ -89,23 +88,6 @@ public class SuccessfulController {
         }else{
             saveRecipe();
         }
-//        if (saveRecipe().equals("Successful")){
-//            try {
-//                Node node = (Node) event.getSource();
-//                Stage stage = (Stage) node.getScene().getWindow();
-//                stage.close();
-//                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Recipes.fxml"));
-//                Scene scene = new Scene(fxmlLoader.load(), 1200,1200);
-//                stage.setScene(scene);
-//                stage.setMaximized(true);
-//                stage.show();
-//                connection.commit();
-//            } catch (IOException ex) {
-//                System.err.println(ex.getMessage());
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
 
     }
 
@@ -200,8 +182,6 @@ public class SuccessfulController {
         SearchCategory = true;
         QueryMenu.setText(        "Search By Food by Category Type. (Insert Food Type)");
     }
-
-
 
         @FXML
     private void QueryResult2() throws SQLException {
@@ -417,5 +397,6 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+
 }
 
