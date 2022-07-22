@@ -1,18 +1,10 @@
 package com.example.project;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.sql.*;
 
 public class SuccessfulController {
@@ -72,6 +64,8 @@ public class SuccessfulController {
     private MenuItem NumberUsersOnApp;
     private MenuButton mealType;
 
+    private final String loginUsername = HelloController.getName();
+
     Boolean QueryFoodByIngredientTF = false;
     Boolean UsersFavoriteFoodTF = false;
     Boolean SearchCategory = false;
@@ -94,23 +88,6 @@ public class SuccessfulController {
         }else{
             saveRecipe();
         }
-//        if (saveRecipe().equals("Successful")){
-//            try {
-//                Node node = (Node) event.getSource();
-//                Stage stage = (Stage) node.getScene().getWindow();
-//                stage.close();
-//                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Recipes.fxml"));
-//                Scene scene = new Scene(fxmlLoader.load(), 1200,1200);
-//                stage.setScene(scene);
-//                stage.setMaximized(true);
-//                stage.show();
-//                connection.commit();
-//            } catch (IOException ex) {
-//                System.err.println(ex.getMessage());
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
 
     }
 
@@ -120,15 +97,13 @@ public class SuccessfulController {
         diff = diff[0].split("=");
         difficulty.setText(diff[1]);
 }
-
     @FXML
     private void HandleCategory(ActionEvent event) {
         String [] diff = event.getTarget().toString().split(",");
         diff = diff[0].split("=");
         category.setText(diff[1]);
     }
-
-    private String saveRecipe() {
+    private void saveRecipe() {
         String difficultyText = difficulty.getText();
         String fname = foodName.getText();
         String ing = ingredients.getText();
@@ -138,7 +113,7 @@ public class SuccessfulController {
             calorieCnt = Integer.parseInt(calorieCount.getText());
         } catch (NumberFormatException nfe) {
             recipeSaveERR.setText("Calorie not an integer");
-            return "Exception";
+            return;
         }
 
         String sql = "INSERT INTO Food VALUES(?,?,?,?,?,?)";
@@ -150,7 +125,7 @@ public class SuccessfulController {
             ps.setString(3,recip);
             ps.setString(4,difficultyText);
             ps.setString(5, String.valueOf(calorieCnt));
-            ps.setString(6, String.valueOf(calorieCnt));
+            ps.setString(6, category.getText());
             ps.executeUpdate();
             foodName.clear();
             calorieCount.clear();
@@ -159,11 +134,10 @@ public class SuccessfulController {
             difficulty.setText("Difficulty");
         }catch (SQLException e) {
             System.err.println(e.getMessage());
-            return "Exception";
+            return;
         }
         recipeSaveERR.setTextFill(Color.GREEN);
         recipeSaveERR.setText("Recipe Saved Successfully");
-        return "Success";
     }
 
     @FXML
@@ -422,7 +396,6 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
-
     @FXML
     private void RecipeOfAllFoods() throws SQLException{
         QueryFoodByIngredientTF = false;
@@ -444,5 +417,6 @@ public class SuccessfulController {
         }
         queryResults.setText(String.valueOf(ans));
     }
+
 }
 

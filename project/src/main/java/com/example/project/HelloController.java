@@ -27,6 +27,7 @@ public class HelloController {
     @FXML
     private Button signupBTN;
 
+    static String currentlyLoggedIn;
     @FXML
     protected void handleMouse(MouseEvent event) throws IOException {
         if (event.getSource() == signinBTN){
@@ -75,8 +76,12 @@ public class HelloController {
 
         }
     }
+    public static String getName(){
+        return currentlyLoggedIn;
+    }
     private String login(){
         String username = usernameTXT.getText();
+        currentlyLoggedIn = username;
         String password = passwordTXT.getText();
         String sql = "SELECT * FROM User where userID = ? and password = ?";
 
