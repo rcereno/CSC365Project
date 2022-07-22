@@ -16,7 +16,6 @@ public class SuccessfulController {
     @FXML
     private MenuItem UsernamePassword;
 
-
     @FXML
     private MenuItem Query1;
     @FXML
@@ -84,7 +83,6 @@ public class SuccessfulController {
             ans.append(Username).append(",").append(Password).append("\n");
         }
         queryResults.setText(String.valueOf(ans));
-
     }
 }
 

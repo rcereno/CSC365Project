@@ -24,18 +24,20 @@
       </ImageView>
       <AnchorPane layoutX="4.0" prefHeight="63.0" prefWidth="1011.0" style="-fx-background-color: #f7e7ce;">
          <children>
-            <Label layoutX="320.0" layoutY="16.0" prefHeight="31.0" prefWidth="226.0" text="What would you like to do?">
+            <Label layoutX="48.0" layoutY="16.0" prefHeight="31.0" prefWidth="226.0" text="What would you like to do?">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Label>
-            <MenuButton layoutX="604.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="313.0" text="Select a query">
+            <MenuButton layoutX="311.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="345.0" text="Select a query">
               <items>
                 <MenuItem mnemonicParsing="false" text="How many users are using this App?" />
                 <MenuItem fx:id="UsernamePassword" mnemonicParsing="false" onAction="#QueryResult2" text="What are the usernames and passwords for all users?" />
                   <MenuItem fx:id="testMenu" mnemonicParsing="false" onAction="#testQuery" text="Test" />
               </items>
             </MenuButton>
+            <TextField layoutX="675.0" layoutY="19.0" prefHeight="25.0" prefWidth="252.0" promptText="user input" />
+            <Button layoutX="945.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
          </children></AnchorPane>
       <AnchorPane layoutX="46.0" layoutY="211.0" prefHeight="426.0" prefWidth="292.0" style="-fx-background-color: #fcf4d7;">
          <children>
