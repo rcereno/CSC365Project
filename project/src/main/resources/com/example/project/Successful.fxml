@@ -29,15 +29,17 @@
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Label>
-            <MenuButton layoutX="311.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="345.0" text="Select a query">
+            <MenuButton fx:id="QueryMenu" layoutX="311.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="345.0" text="Select a query">
               <items>
                 <MenuItem mnemonicParsing="false" text="How many users are using this App?" />
                 <MenuItem fx:id="UsernamePassword" mnemonicParsing="false" onAction="#QueryResult2" text="What are the usernames and passwords for all users?" />
                   <MenuItem fx:id="testMenu" mnemonicParsing="false" onAction="#testQuery" text="Test" />
+                  <MenuItem fx:id="QueryFoodByIngredient" mnemonicParsing="false" onAction="#setQuery2True" text="Search by Ingredient Name. (Insert Ingredient Name)" />
+                  <MenuItem fx:id="NumberUsersOnApp" mnemonicParsing="false" onAction="#UsersOnApp" text="How many users are using this App?" />
               </items>
             </MenuButton>
-            <TextField layoutX="675.0" layoutY="19.0" prefHeight="25.0" prefWidth="252.0" promptText="user input" />
-            <Button layoutX="945.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
+            <TextField fx:id="UserQueryInput" layoutX="675.0" layoutY="19.0" prefHeight="25.0" prefWidth="252.0" promptText="user input" />
+            <Button fx:id="QuerySearchButton" layoutX="945.0" layoutY="19.0" mnemonicParsing="false" onAction="#QueryByInput" text="Search" />
          </children></AnchorPane>
       <AnchorPane layoutX="46.0" layoutY="211.0" prefHeight="426.0" prefWidth="292.0" style="-fx-background-color: #fcf4d7;">
          <children>
