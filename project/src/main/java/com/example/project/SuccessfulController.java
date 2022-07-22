@@ -8,6 +8,11 @@ import javafx.scene.paint.Color;
 import java.sql.*;
 
 public class SuccessfulController {
+    public String user = HelloController.currentlyLoggedIn;
+    @FXML
+    public Button likedFoodBTN;
+    @FXML
+    public TextField nameFoodTXT;
     @FXML
     private MenuButton QueryMenu;
     public MenuItem Easy;
@@ -25,9 +30,10 @@ public class SuccessfulController {
     public MenuItem Medium;
     @FXML public MenuItem Vegan;
     @FXML public MenuItem Vegeterian;
-    public Button btnSbmit;
+    public Button btnSbmitRecipe;
     @FXML MenuItem None;
     @FXML Label recipeSaveERR;
+    @FXML Label likedSaveERR;
     @FXML
     public MenuItem Hard;
     @FXML
@@ -62,9 +68,8 @@ public class SuccessfulController {
     private MenuItem TopFoods;
     @FXML
     private MenuItem NumberUsersOnApp;
+    @FXML
     private MenuButton mealType;
-
-    private final String loginUsername = HelloController.getName();
 
     Boolean QueryFoodByIngredientTF = false;
     Boolean UsersFavoriteFoodTF = false;
@@ -81,13 +86,44 @@ public class SuccessfulController {
         }
     }
     @FXML
-    private void handleRecipeSubmit(MouseEvent event){
-        if (calorieCount.getText().isEmpty() || foodName.getText().isEmpty() || ingredients.getText().isEmpty() || recipeSteps.getText().isEmpty()) {
-            recipeSaveERR.setTextFill(Color.TOMATO);
-            recipeSaveERR.setText("Enter all details");
-        }else{
-            saveRecipe();
+    private void handleSubmit(MouseEvent event){
+        if (event.getSource() == btnSbmitRecipe){
+            if (calorieCount.getText().isEmpty() || foodName.getText().isEmpty() || ingredients.getText().isEmpty() || recipeSteps.getText().isEmpty()) {
+                recipeSaveERR.setTextFill(Color.TOMATO);
+                recipeSaveERR.setText("Enter all details");
+            }else{
+                saveRecipe();
+            }
+        } else if (event.getSource() == likedFoodBTN){
+            if( nameFoodTXT.getText().isEmpty()){
+                likedSaveERR.setTextFill(Color.TOMATO);
+                likedSaveERR.setText("Enter all details");
+            }else{
+                saveLiked();
+            }
         }
+    }
+
+    private void saveLiked() {
+        String fd = nameFoodTXT.getText();
+
+        String sql = "INSERT INTO FavoriteFoods VALUES(?,?)";
+
+        try{
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,user );
+            ps.setString(2,fd );
+            ps.executeUpdate();
+            nameFoodTXT.clear();
+        }catch (SQLException e) {
+            System.err.println(e.getMessage());
+            likedSaveERR.setTextFill(Color.RED);
+            likedSaveERR.setText("Liked Failed");
+            return;
+        }
+        likedSaveERR.setTextFill(Color.GREEN);
+        likedSaveERR.setText("Liked Saved Successfully");
+
 
     }
 
@@ -104,40 +140,42 @@ public class SuccessfulController {
         category.setText(diff[1]);
     }
     private void saveRecipe() {
-        String difficultyText = difficulty.getText();
-        String fname = foodName.getText();
-        String ing = ingredients.getText();
-        String recip = recipeSteps.getText();
-        int calorieCnt;
-        try{
-            calorieCnt = Integer.parseInt(calorieCount.getText());
-        } catch (NumberFormatException nfe) {
-            recipeSaveERR.setText("Calorie not an integer");
-            return;
-        }
 
-        String sql = "INSERT INTO Food VALUES(?,?,?,?,?,?)";
+            String difficultyText = difficulty.getText();
+            String fname = foodName.getText();
+            String ing = ingredients.getText();
+            String recip = recipeSteps.getText();
+            int calorieCnt;
+            try{
+                calorieCnt = Integer.parseInt(calorieCount.getText());
+            } catch (NumberFormatException nfe) {
+                recipeSaveERR.setText("Calorie not an integer");
+                return;
+            }
 
-        try{
-            ps = connection.prepareStatement(sql);
-            ps.setString(1,fname );
-            ps.setString(2,ing );
-            ps.setString(3,recip);
-            ps.setString(4,difficultyText);
-            ps.setString(5, String.valueOf(calorieCnt));
-            ps.setString(6, category.getText());
-            ps.executeUpdate();
-            foodName.clear();
-            calorieCount.clear();
-            ingredients.clear();
-            recipeSteps.clear();
-            difficulty.setText("Difficulty");
-        }catch (SQLException e) {
-            System.err.println(e.getMessage());
-            return;
-        }
-        recipeSaveERR.setTextFill(Color.GREEN);
-        recipeSaveERR.setText("Recipe Saved Successfully");
+            String sql = "INSERT INTO Food VALUES(?,?,?,?,?,?)";
+
+            try{
+                ps = connection.prepareStatement(sql);
+                ps.setString(1,fname );
+                ps.setString(2,ing );
+                ps.setString(3,recip);
+                ps.setString(4,difficultyText);
+                ps.setString(5, String.valueOf(calorieCnt));
+                ps.setString(6, category.getText());
+                ps.executeUpdate();
+                foodName.clear();
+                calorieCount.clear();
+                ingredients.clear();
+                recipeSteps.clear();
+                difficulty.setText("Difficulty");
+            }catch (SQLException e) {
+                System.err.println(e.getMessage());
+                return;
+            }
+            recipeSaveERR.setTextFill(Color.GREEN);
+            recipeSaveERR.setText("Recipe Saved Successfully");
+
     }
 
     @FXML

@@ -29,7 +29,6 @@ public class SignupController {
 
         }
     }
-
     @FXML
     private TextField usernameTXT;
     @FXML
@@ -100,7 +99,6 @@ public class SignupController {
         String name = nameTXT.getText();
         String calorie = calorieTXT.getText();
         String sql = "INSERT INTO User VALUES(?,?,?,?)";
-
         try{
             ps = connection.prepareStatement(sql);
             ps.setString(1,username );

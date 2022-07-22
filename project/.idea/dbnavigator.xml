@@ -60,7 +60,8 @@ foreign key(userID) references User(userID),
 foreign key(likedFood) references Food(foodName),
 Primary key (userID, likedFood));
 
-select * from Food]]></console>
+select * from FavoriteFoods;
+select * from User;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

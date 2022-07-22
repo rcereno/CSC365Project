@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.*;
 
@@ -27,7 +26,7 @@ public class HelloController {
     @FXML
     private Button signupBTN;
 
-    static String currentlyLoggedIn;
+    public static String currentlyLoggedIn;
     @FXML
     protected void handleMouse(MouseEvent event) throws IOException {
         if (event.getSource() == signinBTN){
@@ -76,9 +75,7 @@ public class HelloController {
 
         }
     }
-    public static String getName(){
-        return currentlyLoggedIn;
-    }
+
     private String login(){
         String username = usernameTXT.getText();
         currentlyLoggedIn = username;
