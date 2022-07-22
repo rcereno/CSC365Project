@@ -10,11 +10,16 @@ import java.sql.*;
 
 public class SuccessfulController {
     @FXML
+    private MenuItem testMenu;
+    @FXML
+    private TextArea queryResults;
+
+
+
+    @FXML
     private MenuItem Query1;
     @FXML
     private TextField foodName;
-    @FXML
-    private TextArea queryResults;
     @FXML
     private TextArea ingredients;
     @FXML
@@ -51,7 +56,12 @@ public class SuccessfulController {
         };
     }
 
-    public void QueryResult1() throws SQLException {
+    @FXML
+    private void testQuery(ActionEvent event){
+        queryResults.setText("Hello mom");
+    }
+
+    private void QueryResult1() throws SQLException {
         ResultSet rs;
         Statement statement = connection.createStatement();
         rs = statement.executeQuery("SELECT * FROM STUDENTS");

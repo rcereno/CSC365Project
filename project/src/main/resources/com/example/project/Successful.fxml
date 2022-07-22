@@ -33,7 +33,7 @@
               <items>
                 <MenuItem mnemonicParsing="false" text="How many users are using this App?" />
                 <MenuItem mnemonicParsing="false" text="What are the usernames and passwords for all users?" />
-                  <MenuItem mnemonicParsing="false" text="Test" />
+                  <MenuItem fx:id="testMenu" mnemonicParsing="false" onAction="#testQuery" text="Test" />
               </items>
             </MenuButton>
          </children></AnchorPane>
