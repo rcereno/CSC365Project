@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="663.0" prefWidth="1015.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
+<AnchorPane prefHeight="661.0" prefWidth="1330.0" style="-fx-background-color: #eae3c9;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.SuccessfulController">
    <children>
       <ImageView fitHeight="103.0" fitWidth="110.0" layoutX="122.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,9 +22,9 @@
             <Image url="@images/favorite-food.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="4.0" prefHeight="63.0" prefWidth="1015.0" style="-fx-background-color: #f7e7ce;">
+      <AnchorPane layoutX="4.0" prefHeight="63.0" prefWidth="1011.0" style="-fx-background-color: #f7e7ce;">
          <children>
-            <Label layoutX="356.0" layoutY="16.0" prefHeight="31.0" prefWidth="226.0" text="What would you like to do?">
+            <Label layoutX="320.0" layoutY="16.0" prefHeight="31.0" prefWidth="226.0" text="What would you like to do?">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -83,6 +83,19 @@
                </children></AnchorPane>
             <TextField layoutX="21.0" layoutY="113.0" prefHeight="25.0" prefWidth="226.0" promptText="Name of Food" />
             <TextField layoutX="22.0" layoutY="70.0" prefHeight="25.0" prefWidth="226.0" promptText=" Username (for which user)" />
+         </children></AnchorPane>
+      <AnchorPane layoutX="1012.0" prefHeight="661.0" prefWidth="320.0" style="-fx-background-color: #f7e7ce;">
+         <children>
+            <AnchorPane layoutX="25.0" layoutY="62.0" prefHeight="576.0" prefWidth="281.0" style="-fx-background-color: #fcf4d7;">
+               <children>
+                  <TextArea layoutX="11.0" layoutY="11.0" prefHeight="551.0" prefWidth="259.0" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="123.0" layoutY="24.0" text="Query Results">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
    </children>
 </AnchorPane>

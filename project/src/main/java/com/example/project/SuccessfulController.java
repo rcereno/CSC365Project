@@ -11,7 +11,8 @@ import java.sql.*;
 public class SuccessfulController {
     @FXML
     private Menu Query1;
-
+    @FXML
+    private Menu Query2;
 
     PreparedStatement ps;
     Connection connection;
@@ -24,7 +25,8 @@ public class SuccessfulController {
             e.printStackTrace();
         }
     }
-    private void HandleQueres(MouseEvent event){}
+    private void HandleQueres(MouseEvent event){
+    }
 
     public void QueryResult1() throws SQLException {
         ResultSet rs;
