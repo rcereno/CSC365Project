@@ -46,6 +46,7 @@ public class SuccessfulController {
 
     Boolean QueryFoodByIngredientTF = false;
     Boolean UsersFavoriteFoodTF = false;
+    Boolean SearchCategory = false;
     PreparedStatement ps;
     Connection connection;
     public SuccessfulController() throws SQLException {
@@ -71,6 +72,8 @@ public class SuccessfulController {
     private void testQuery(ActionEvent event){
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
         QueryMenu.setText("Test");
         StringBuilder hi= new StringBuilder();
         int i = 0;
@@ -86,6 +89,8 @@ public class SuccessfulController {
     private void setQuery2True(){
         QueryFoodByIngredientTF = true;
         UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
         QueryMenu.setText("Search by Ingredient Name. (Insert Ingredient Name)");
     }
 
@@ -93,15 +98,26 @@ public class SuccessfulController {
     private void setQueryFavoriteFood(){
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = true;
+        SearchCategory = false;
         QueryMenu.setText("Search a user’s favorite food by Name");
+    }
+
+    @FXML
+    private void SearchCategoryType(){
+        QueryFoodByIngredientTF = false;
+        UsersFavoriteFoodTF = false;
+        SearchCategory = true;
+        QueryMenu.setText(        "Search By Food by Category Type. (Insert Food Type)");
     }
 
 
 
-    @FXML
+        @FXML
     private void QueryResult2() throws SQLException {
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
+
+        SearchCategory = false;
         QueryMenu.setText("What are the usernames and passwords for all users?");
         ResultSet rs;
         Statement statement = connection.createStatement();
@@ -137,7 +153,7 @@ public class SuccessfulController {
                 queryResults.setText("Enter an ingredient.");
             }
         }
-        if (UsersFavoriteFoodTF){
+        else if (UsersFavoriteFoodTF){
             if (!UserQueryInput.getText().isEmpty()){
                 ResultSet rs;
                 Statement statement = connection.createStatement();
@@ -155,12 +171,32 @@ public class SuccessfulController {
                 queryResults.setText("Enter a user's Name.");
             }
         }
+        else if (SearchCategory){
+            if (!UserQueryInput.getText().isEmpty()){
+                ResultSet rs;
+                Statement statement = connection.createStatement();
+                rs = statement.executeQuery("Select foodName " +
+                        "From Food F " +
+                        "Where F.category = '" + UserQueryInput.getText() + "'");
+                StringBuilder ans = new StringBuilder();
+                while (rs.next()){
+                    String FoodName = rs.getString(1);
+                    ans.append(FoodName).append("\n\n");
+                }
+                queryResults.setText(String.valueOf(ans));
+            }
+            else {
+                queryResults.setText("Enter a Food Category Type");
+            }
+        }
     }
 
     @FXML
     private void UsersOnApp() throws SQLException {
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
         QueryMenu.setText("How many users are using this App?");
         ResultSet rs;
         Statement statement = connection.createStatement();
@@ -178,6 +214,8 @@ public class SuccessfulController {
     private void MostLikedFoods() throws SQLException {
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
         QueryMenu.setText("What are the top 10 most liked Food items?");
         ResultSet rs;
         Statement statement = connection.createStatement();
@@ -199,6 +237,8 @@ public class SuccessfulController {
     private void GetUsersNames() throws SQLException{
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
         QueryMenu.setText("What are the names of all the users?");
         ResultSet rs;
         Statement statement = connection.createStatement();
@@ -216,6 +256,8 @@ public class SuccessfulController {
     private void FavoriteMealPlan() throws SQLException{
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
         QueryMenu.setText("List of favorite foods eaten in MealPlan");
         ResultSet rs;
         Statement statement = connection.createStatement();
@@ -239,6 +281,8 @@ public class SuccessfulController {
     private void ManyFoodsUsersLiked() throws SQLException{
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
         QueryMenu.setText("How many foods all users have liked?");
         ResultSet rs;
         Statement statement = connection.createStatement();
@@ -260,6 +304,8 @@ public class SuccessfulController {
     private void SumCaloriesOnDate() throws SQLException{
         QueryFoodByIngredientTF = false;
         UsersFavoriteFoodTF = false;
+        SearchCategory = false;
+
         QueryMenu.setText("Sum of Calories for a User based on Exact Year + Month + Day");
         ResultSet rs;
         Statement statement = connection.createStatement();
